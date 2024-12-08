@@ -1,0 +1,57 @@
+# Ignore build results
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.vspscc
+*.vssscc
+.vscode/
+.vs/
+*.dbmdl
+*.pidb
+*.pdb
+
+# Package directories
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+
+# DotNetCore/Visual Studio
+.project/
+.nuget/
+.idea/
+*.ncrunchsolution
+*.ncrunchproject
+*.ncrunch
+
+# Logs and database files
+*.log
+*.ldf
+*.mdf
+
+# Runtime files
+*.pid
+*.session
+*.session.*
+
+# Coverage reports
+*.coverage
+*.coveragexml
+*.opencover.*
+coverage/
+
+# OS Generated files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+wwwroot/lib/
+wwwroot/dist/

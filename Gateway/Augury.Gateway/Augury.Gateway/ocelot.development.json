@@ -1,0 +1,293 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/machine/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44356
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/Machine/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-data-service",
+      "Key": "machine-data-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machine",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44356
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/Machine",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-data-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/repairlog/machine/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44332
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/repairlog/machine/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-repair-feed-service",
+      "Key": "machine-repair-feed-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/repairlog",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44332
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/repairlog",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-repair-feed-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/repairlog/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44332
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/repairlog/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-repair-feed-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machinefeed/machine/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44366
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/machinefeed/machine/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-telemetry-service",
+      "Key": "machine-telemetry-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machinefeed",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44366
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/machinefeed",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-telemetry-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machinefeed/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44366
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/machinefeed/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "machine-telemetry-service",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    }
+  ],
+  "Aggregates": [
+    {
+      "UpstreamPathTemplate": "/api/v1/machine-feeds/{id}",
+      "RouteKeys": [
+        "machine-data-service",
+        "machine-repair-feed-service",
+        "machine-telemetry-service"
+      ],
+      "Aggregator": "MachineFeedAggregator"
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/tabular/machine-feeds/{id}",
+      "RouteKeys": [
+        "machine-data-service",
+        "machine-repair-feed-service",
+        "machine-telemetry-service"
+      ],
+      "Aggregator": "TabularMachineFeedAggregator"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "machine-data-service",
+      "Config": [
+        {
+          "Name": "Machine Data Api",
+          "Version": "v1",
+          "Url": "https://localhost:44356/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "machine-repair-feed-service",
+      "Config": [
+        {
+          "Name": "Repair Feed Api",
+          "Version": "v1",
+          "Url": "https://localhost:44332/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "machine-telemetry-service",
+      "Config": [
+        {
+          "Name": "Machine Telemetry Api",
+          "Version": "v1",
+          "Url": "https://localhost:44366/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+  }
+}

@@ -1,0 +1,331 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/machine/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-data-service-1",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/Machine/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-data-service",
+      "SwaggerKey": "machine-data-service",
+      "Key": "machine-data-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machine",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-data-service-1",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/Machine",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-data-service",
+      "SwaggerKey": "machine-data-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/repairlog/machine/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-repair-feed-service-1",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/repairlog/machine/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-repair-feed-service",
+      "SwaggerKey": "machine-repair-feed-service",
+      "Key": "machine-repair-feed-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/repairlog",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-repair-feed-service-1",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/repairlog",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-repair-feed-service",
+      "SwaggerKey": "machine-repair-feed-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/repairlog/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-repair-feed-service-1",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/repairlog/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-repair-feed-service",
+      "SwaggerKey": "machine-repair-feed-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machinefeed/machine/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-telemetry-service-1",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/machinefeed/machine/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-telemetry-service",
+      "SwaggerKey": "machine-telemetry-service",
+      "Key": "machine-telemetry-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machinefeed",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-telemetry-service-1",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/machinefeed",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-telemetry-service",
+      "SwaggerKey": "machine-telemetry-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/machinefeed/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machine-telemetry-service-1",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/machinefeed/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ServiceName": "machine-telemetry-service",
+      "SwaggerKey": "machine-telemetry-service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "Limit": 100
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 10000
+      },
+      "CacheOptions": {
+        "TtlSeconds": 60, // Time-to-live in seconds
+        "Enabled": true,
+        "MaxAge": 30 // Max age for caching responses
+      }
+    }
+  ],
+  "Aggregates": [
+    {
+      "UpstreamPathTemplate": "/api/v1/machine-feeds/{id}",
+      "RouteKeys": [
+        "machine-data-service",
+        "machine-repair-feed-service",
+        "machine-telemetry-service"
+      ],
+      "Aggregator": "MachineFeedAggregator"
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/tabular/machine-feeds/{id}",
+      "RouteKeys": [
+        "machine-data-service",
+        "machine-repair-feed-service",
+        "machine-telemetry-service"
+      ],
+      "Aggregator": "TabularMachineFeedAggregator"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "machine-data-service",
+      "Config": [
+        {
+          "Name": "Machine Data Api",
+          "Version": "v1",
+          "Url": "http://machine-data-service-1:5001/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "machine-repair-feed-service",
+      "Config": [
+        {
+          "Name": "Repair Feed Api",
+          "Version": "v1",
+          "Url": "http://machine-repair-feed-service-1:5002/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "machine-telemetry-service",
+      "Config": [
+        {
+          "Name": "Machine Telemetry Api",
+          "Version": "v1",
+          "Url": "http://machine-telemetry-service-1:5003/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "Consul"
+    },
+    "BaseUrl": "http://localhost:5000"
+  }
+}

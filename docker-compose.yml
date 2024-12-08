@@ -1,0 +1,121 @@
+services:
+
+  augury-api-gateway:
+    build:
+      context: ./Gateway/Augury.Gateway/Augury.Gateway
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80" # Map container port 80 to host port 5000
+    depends_on:
+      - machine-data-service
+      - machine-repair-service
+      - machine-telemetry-service
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80  # Listen on port 80
+    networks:
+      - app-network
+
+  machine-data-service:
+    build:
+      context: ./Services/MachineInfoService/MachineInfoService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80" # Map container port 80 to host port 5000
+    depends_on:
+      - mongodb
+      - consul
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__MongoDb=mongodb://mongodb:27017/machines
+      - ASPNETCORE_URLS=http://+:80  # Listen on port 80
+    networks:
+      - app-network
+
+  machine-repair-service:
+    build:
+      context: ./Services/MachineRepairService/MachineRepairService
+      dockerfile: Dockerfile
+    ports:
+      - "5002:80" # Map container port 80 to host port 5001
+    depends_on:
+      - mongodb
+      - consul
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__MongoDb=mongodb://mongodb:27017/repairs
+      - ASPNETCORE_URLS=http://+:80  # Listen on port 80
+    networks:
+      - app-network
+  
+  machine-telemetry-service:
+    build:
+      context: ./Services/MachineTelemetryService/MachineTelemetryService
+      dockerfile: Dockerfile
+    ports:
+      - "5003:80" # Map container port 80 to host port 5002
+    depends_on:
+      - mongodb
+      - consul
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__MongoDb=mongodb://mongodb:27017/repairs
+      - ASPNETCORE_URLS=http://+:80  # Listen on port 80
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017" # Expose MongoDB port
+    networks:
+      - app-network
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+    command: mongod --bind_ip_all
+
+  consul:
+    image: consul:1.15.4
+    container_name: consul
+    ports:
+      - "8500:8500"  # Consul UI port
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0  # Network interface to bind to
+    networks:
+      - app-network
+    command: "agent -dev -client=0.0.0.0"  # Start Consul in dev mode
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    environment:
+      COLLECTOR_ZIPKIN_HTTP_PORT: 9411
+    ports:
+      - "5775:5775/udp"    # Jaeger agent communication (UDP)
+      - "6831:6831/udp"    # Jaeger agent communication (UDP)
+      - "6832:6832/udp"    # Jaeger agent communication (UDP)
+      - "5778:5778"        # Jaeger agent HTTP endpoint
+      - "16686:16686"      # Jaeger UI (http://localhost:16686)
+      - "14268:14268"      # Jaeger collector HTTP endpoint
+      - "14250:14250"      # Jaeger collector gRPC endpoint
+      - "9411:9411"        # Zipkin compatibility endpoint
+    networks:
+      - app-network
+    restart: always
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge
