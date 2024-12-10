@@ -17,7 +17,9 @@ This project demonstrates a scalable and loosely coupled distributed microservic
 - **Design Principle**: Follows the KISS (Keep It Simple, Stupid) principle
 - **Repository Design Pattern**: Applied for clean separation of concerns
 
-## Prerequisites
+## Installation & Deployment
+
+### Prerequisites
 
 ### 1. **Docker**
 
@@ -33,13 +35,8 @@ To seed sample data into MongoDB, you will need Node.js and npm installed.
   ```bash
   npm -v
 
-### 3. IDE/Tool/Framework for Running microservices in local development environment
 
-- Visual Studio 2022/Visual Studio Code/Dotnet CLI
-- .Net framework 7 SDK
-- Mongodb or perform "Step 1: Build and Deploy Services Locally Using Docker" mentioned above
-
-## Database Setup & Test Data Seeding
+### Database Setup & Test Data Seeding
 ### Step 1: Build and Deploy Services Locally Using Docker
 - Remove existing containers(optional):
     ```bash
@@ -63,14 +60,6 @@ To seed sample data into MongoDB, you will need Node.js and npm installed.
 	node data-seeder.js
     ```
 
-## Running microservices in local development environment
-
-### Open, build and Run the below .net projects by either options - Visual Studio 2022/Visual Studio Code/Dotnet CLI
-- Services\MachineInfoService\MachineInfoService\MachineInfoService.csproj
-- Services\MachineRepairService\MachineRepairService\MachineRepairService.csproj
-- Services\MachineTelemetryService\MachineTelemetryService\MachineTelemetryService.csproj
-- Gateway\Augury.Gateway\Augury.Gateway\Augury.Gateway.csproj
-
 ## Access Points and URLs
 ### 1. Consul Management UI
 - View service discovery details and registered microservices:
@@ -78,24 +67,20 @@ To seed sample data into MongoDB, you will need Node.js and npm installed.
     http://localhost:8500
     ```
 ### 2. Unified API Gateway (Gateway\Augury.Gateway\Augury.Gateway\Augury.Gateway.csproj via Ocelot)
-**Note**
-- "Env" parmater value should be **"Staging"** in "appsettings.Development.json" file, if like to point to the backend microservices running in docker containers.
-- "Env" parmater value should be **"Development"** in "appsettings.Development.json" file, if like to point to the backend microservices when they are running on localhost.
-- Use launch profile of IISSetting or else change and protocol to match the launch profile setting used to run the Gateway Api project
 
 **Endpoints:**
 - **Retrieve Machine Feeds:**
     ```bash
-    https://localhost:44365/api/v1/machine-feeds/5f54dd217546020001758b7b
+    https://localhost:5000/api/v1/machine-feeds/5f54dd217546020001758b7b
     ```
     ```bash
-    https://localhost:44365/api/v1/tabular/machine-feeds/5f54dd217546020001758b7b
+    https://localhost:5000/api/v1/tabular/machine-feeds/5f54dd217546020001758b7b
     ```
     
 - **API Documentation:** Unified Gateway Swagger UI
     - Select **"Aggregates"** API defintion from the header right side drop down to test aggregate machine feed API endpoints
     ```bash
-    https://localhost:44365/swagger
+    https://localhost:5000/swagger
 	```
 
 ### 3. Individual Microservices
@@ -125,9 +110,27 @@ Each microservice has dedicated health checks and API documentation:
     ```bash
     http://localhost:5003/swagger
 
+## Running microservices in local development environment
+### Prerequisites
+
+### IDE/Tool/Framework for Running microservices in local development environment
+
+- Visual Studio 2022/Visual Studio Code/Dotnet CLI
+- .Net framework 7 SDK
+- Mongodb or perform "Step 1: Build and Deploy Services Locally Using Docker" mentioned above
+
+### Open, build and Run the below .net projects by either options - Visual Studio 2022/Visual Studio Code/Dotnet CLI
+- Services\MachineInfoService\MachineInfoService\MachineInfoService.csproj
+- Services\MachineRepairService\MachineRepairService\MachineRepairService.csproj
+- Services\MachineTelemetryService\MachineTelemetryService\MachineTelemetryService.csproj
+- Gateway\Augury.Gateway\Augury.Gateway\Augury.Gateway.csproj
+
+- **Note**
+    - "Env" parmater value should be **"Staging"** in "appsettings.Development.json" file, if like to point to the backend microservices running in docker containers.
+    - "Env" parmater value should be **"Development"** in "appsettings.Development.json" file, if like to point to the backend microservices when they are running on localhost.
+    - Use launch profile of IISSetting or else change and protocol to match the launch profile setting used to run the Gateway Api project
 
 ## Notes
 - The data-seeder.js script is used only once to populate MongoDB with sample data for testing.
 - Ensure Docker is running before deploying the services.
 - All microservices are exposed through the unified Ocelot API Gateway, simplifying client access.
-- More work require to make Api Gateway working from docker container as configuration changes require to make backend microservices running in other containers accessible to gateway.

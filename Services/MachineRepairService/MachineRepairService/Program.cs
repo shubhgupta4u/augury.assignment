@@ -26,6 +26,7 @@ builder.Services.AddSingleton<IConsulClient, ConsulClient>(sp =>
 string environment = builder.Configuration["ASPNETCORE_ENVIRONMENT"];
 if (environment != null && environment.Equals("production", StringComparison.InvariantCultureIgnoreCase))
 {
+    string jaegerUrl = builder.Configuration["JaegerUrl"];
     // Add OpenTelemetry Tracing with Jaeger Exporter
     builder.Services.AddOpenTelemetry()
         .WithTracing(tracerProviderBuilder =>
@@ -35,7 +36,7 @@ if (environment != null && environment.Equals("production", StringComparison.Inv
                 .AddAspNetCoreInstrumentation()  // Captures HTTP requests to API Gateway
                 .AddJaegerExporter(jaegerOptions =>
                 {
-                    jaegerOptions.AgentHost = "localhost"; // Jaeger host (use the container name if in Docker)
+                    jaegerOptions.AgentHost = jaegerUrl; // Jaeger host (use the container name if in Docker)
                     jaegerOptions.AgentPort = 6831;        // Jaeger default port for traces
                 });
         });

@@ -57,8 +57,8 @@ IOcelotBuilder ocelot = builder.Services.AddOcelot()
 
 if (!string.IsNullOrEmpty(environment) || environment.Equals("production", StringComparison.InvariantCultureIgnoreCase))
 {
-    ocelot.AddConsul();
-
+    //ocelot.AddConsul();
+    string jaegerUrl = builder.Configuration["JaegerUrl"] ?? "localhost";
     // Add OpenTelemetry Tracing
     builder.Services.AddOpenTelemetry()
     .WithTracing(tracerProviderBuilder =>
@@ -69,7 +69,7 @@ if (!string.IsNullOrEmpty(environment) || environment.Equals("production", Strin
             .AddHttpClientInstrumentation()   // Capture traces for outgoing HTTP requests (if applicable)
             .AddJaegerExporter(jaegerOptions =>
             {
-                jaegerOptions.AgentHost = "localhost"; // Jaeger host (use the container name if in Docker)
+                jaegerOptions.AgentHost = jaegerUrl; // Jaeger host (use the container name if in Docker)
                 jaegerOptions.AgentPort = 6831;        // Jaeger default port for traces
             });
     });

@@ -5,13 +5,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-data-service-1",
-          "Port": 5001
+          "Host": "machine-data-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/Machine/{id}",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-data-service",
       "SwaggerKey": "machine-data-service",
       "Key": "machine-data-service",
       "LoadBalancerOptions": {
@@ -39,13 +38,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-data-service-1",
-          "Port": 5001
+          "Host": "machine-data-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/Machine",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-data-service",
       "SwaggerKey": "machine-data-service",
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -72,13 +70,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-repair-feed-service-1",
-          "Port": 5002
+          "Host": "machine-repair-feed-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/repairlog/machine/{id}",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-repair-feed-service",
       "SwaggerKey": "machine-repair-feed-service",
       "Key": "machine-repair-feed-service",
       "LoadBalancerOptions": {
@@ -106,13 +103,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-repair-feed-service-1",
-          "Port": 5002
+          "Host": "machine-repair-feed-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/repairlog",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-repair-feed-service",
       "SwaggerKey": "machine-repair-feed-service",
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -139,13 +135,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-repair-feed-service-1",
-          "Port": 5002
+          "Host": "machine-repair-feed-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/repairlog/{id}",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-repair-feed-service",
       "SwaggerKey": "machine-repair-feed-service",
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -172,13 +167,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-telemetry-service-1",
-          "Port": 5003
+          "Host": "machine-telemetry-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/machinefeed/machine/{id}",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-telemetry-service",
       "SwaggerKey": "machine-telemetry-service",
       "Key": "machine-telemetry-service",
       "LoadBalancerOptions": {
@@ -206,13 +200,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-telemetry-service-1",
-          "Port": 5003
+          "Host": "machine-telemetry-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/machinefeed",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-telemetry-service",
       "SwaggerKey": "machine-telemetry-service",
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -239,13 +232,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machine-telemetry-service-1",
-          "Port": 5003
+          "Host": "machine-telemetry-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/v1/machinefeed/{id}",
       "UpstreamHttpMethod": [ "GET" ],
-      "ServiceName": "machine-telemetry-service",
       "SwaggerKey": "machine-telemetry-service",
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -295,7 +287,7 @@
         {
           "Name": "Machine Data Api",
           "Version": "v1",
-          "Url": "http://machine-data-service-1:5001/swagger/v1/swagger.json"
+          "Url": "http://machine-data-service:80/swagger/v1/swagger.json"
         }
       ]
     },
@@ -305,7 +297,7 @@
         {
           "Name": "Repair Feed Api",
           "Version": "v1",
-          "Url": "http://machine-repair-feed-service-1:5002/swagger/v1/swagger.json"
+          "Url": "http://machine-repair-feed-service:80/swagger/v1/swagger.json"
         }
       ]
     },
@@ -315,17 +307,12 @@
         {
           "Name": "Machine Telemetry Api",
           "Version": "v1",
-          "Url": "http://machine-telemetry-service-1:5003/swagger/v1/swagger.json"
+          "Url": "http://machine-telemetry-service:80/swagger/v1/swagger.json"
         }
       ]
     }
   ],
   "GlobalConfiguration": {
-    "ServiceDiscoveryProvider": {
-      "Host": "consul",
-      "Port": 8500,
-      "Type": "Consul"
-    },
     "BaseUrl": "http://localhost:5000"
   }
 }
