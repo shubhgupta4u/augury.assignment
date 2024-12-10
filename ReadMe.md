@@ -13,6 +13,7 @@ This project demonstrates a scalable and loosely coupled distributed microservic
 - **Resilience**: Implements Exponential Retry Policy
 - **Response Caching**: Enhances performance by caching frequently accessed data
 - **Service Discovery**: Consul
+- **Centralized Logging & Api Request Tracing**: Serialog & Seq
 - **Microservices Architecture**: Loosely Coupled, Scalable, and Distributed
 - **Design Principle**: Follows the KISS (Keep It Simple, Stupid) principle
 - **Repository Design Pattern**: Applied for clean separation of concerns
@@ -66,7 +67,14 @@ To seed sample data into MongoDB, you will need Node.js and npm installed.
     ```bash
     http://localhost:8500
     ```
-### 2. Unified API Gateway (Gateway\Augury.Gateway\Augury.Gateway\Augury.Gateway.csproj via Ocelot)
+
+### 2. Seq Centralized Log Viewer UI
+- View all microservices and api gateway logs and api request trace from centralized UI:
+    ```bash
+    http://localhost:5341
+    ```
+
+### 3. Unified API Gateway (Gateway\Augury.Gateway\Augury.Gateway\Augury.Gateway.csproj via Ocelot)
 
 **Endpoints:**
 - **Retrieve Machine Feeds:**
@@ -83,10 +91,10 @@ To seed sample data into MongoDB, you will need Node.js and npm installed.
     https://localhost:5000/swagger
 	```
 
-### 3. Individual Microservices
+### 4. Individual Microservices
 Each microservice has dedicated health checks and API documentation:
 
-#### 3.1 MachineInfoService
+#### 4.1 MachineInfoService
 - **Health Check:**
     ```bash
     http://localhost:5001/health
@@ -94,7 +102,7 @@ Each microservice has dedicated health checks and API documentation:
     ```bash
     http://localhost:5001/swagger
 
-#### 3.2 MachineRepairService
+#### 4.2 MachineRepairService
 - **Health Check:**
     ```bash
     http://localhost:5002/health
@@ -102,7 +110,7 @@ Each microservice has dedicated health checks and API documentation:
     ```bash
     http://localhost:5002/swagger
 
-#### 3.3 MachineTelemetryService
+#### 4.3 MachineTelemetryService
 - **Health Check:**
     ```bash
     http://localhost:5003/health

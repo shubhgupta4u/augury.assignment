@@ -11,6 +11,7 @@ services:
       - machine-data-service
       - machine-repair-feed-service
       - machine-telemetry-service
+      - seq
     environment:
       - JAEGER_AGENT_HOST=jaeger
       - JAEGER_AGENT_PORT=6831
@@ -29,6 +30,7 @@ services:
     depends_on:
       - mongodb
       - consul
+      - seq
     environment:
       - JAEGER_AGENT_HOST=jaeger
       - JAEGER_AGENT_PORT=6831
@@ -48,6 +50,7 @@ services:
     depends_on:
       - mongodb
       - consul
+      - seq
     environment:
       - JAEGER_AGENT_HOST=jaeger
       - JAEGER_AGENT_PORT=6831
@@ -67,6 +70,7 @@ services:
     depends_on:
       - mongodb
       - consul
+      - seq
     environment:
       - JAEGER_AGENT_HOST=jaeger
       - JAEGER_AGENT_PORT=6831
@@ -117,8 +121,21 @@ services:
       - app-network
     restart: always
 
+  seq:
+    image: datalust/seq
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:80"
+    volumes:
+      - seq_data:/data/seq
+    networks:
+      - app-network
+
 volumes:
   mongodb_data:
+  seq_data:
 
 networks:
   app-network:

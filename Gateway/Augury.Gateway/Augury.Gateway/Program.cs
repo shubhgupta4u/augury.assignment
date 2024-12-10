@@ -16,13 +16,17 @@ using OpenTelemetry.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 string environment = builder.Configuration["Env"];
-
+string seqLogUiUrl = builder.Configuration["SeqLogUiUrl"];
 // Set up Serilog for logging
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateLogger();
+            .Enrich.WithProperty("ServiceName", "Augury.Api.Gateway")
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.Seq(seqLogUiUrl) // Replace with your centralized logging server URL
+            .CreateLogger();
 
 builder.Host.UseSerilog();
+Serilog.Debugging.SelfLog.Enable(Console.Out);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -55,7 +59,7 @@ IOcelotBuilder ocelot = builder.Services.AddOcelot()
             options.WithDictionaryHandle(); // Default in-memory cache
         });
 
-if (!string.IsNullOrEmpty(environment) || environment.Equals("production", StringComparison.InvariantCultureIgnoreCase))
+if (!string.IsNullOrEmpty(environment) && environment.Equals("production", StringComparison.InvariantCultureIgnoreCase))
 {
     //ocelot.AddConsul();
     string jaegerUrl = builder.Configuration["JaegerUrl"] ?? "localhost";
@@ -104,8 +108,23 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseSerilogRequestLogging();
+
 app.MapControllers();
 
 await app.UseOcelot();
 
-app.Run();
+try
+{
+    Log.Information("Starting Augury.Api.Gateway web host");
+    app.Run();
+}
+catch(Exception ex)
+{
+    Log.Fatal(ex, "Augury.Api.Gateway Host terminated unexpectedly");
+    throw;
+}
+finally
+{
+    Log.CloseAndFlush();
+}

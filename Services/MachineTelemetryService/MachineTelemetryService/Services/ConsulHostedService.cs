@@ -29,11 +29,18 @@ namespace Augury.MachineTelemetryService.Services
 
             var registration = new AgentServiceRegistration
             {
-                ID = $"{ServiceName}_{_hostname}:{_port}",
+                ID = $"{ServiceName}-{_hostname}",
                 Name = ServiceName,
                 Address = _hostname,  // Name of the container
-                Port = _port,                   // Port of the service inside the container
-                Tags = new[] { "api", "machine-telemetry" }
+                Port = _port,         // Port of the service inside the container
+                Tags = new[] { "api", ServiceName },
+                Check = new AgentServiceCheck()
+                {
+                    HTTP = $"http://{_hostname}:{_port}/health", // URL to check health of the service
+                    Interval = TimeSpan.FromSeconds(20), // Health check interval
+                    Timeout = TimeSpan.FromSeconds(10), // Health check timeout
+                    DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(2)
+                }
             };
             _registrationId = registration.ID;
 

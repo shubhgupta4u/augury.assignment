@@ -8,9 +8,21 @@ using MongoDB.Driver;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Serilog;
 using System.Runtime.InteropServices;
 
 var builder = WebApplication.CreateBuilder(args);
+
+string seqLogUiUrl = builder.Configuration["SeqLogUiUrl"];
+// Set up Serilog for logging
+Log.Logger = new LoggerConfiguration()
+            .Enrich.WithProperty("ServiceName", "MachineRepairService")
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.Seq(seqLogUiUrl) // Replace with your centralized logging server URL
+            .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Register the API with Consul
 string consulUrl = builder.Configuration["ConsulUrl"] ?? "http://consul:8500";
@@ -69,7 +81,7 @@ var app = builder.Build();
 
 // Map health checks
 app.MapHealthChecks("/health");
-
+app.UseSerilogRequestLogging();
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -80,4 +92,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+try
+{
+    Log.Information("Starting MachineRepairService web host");
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "MachineRepairService Host terminated unexpectedly");
+    throw;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
